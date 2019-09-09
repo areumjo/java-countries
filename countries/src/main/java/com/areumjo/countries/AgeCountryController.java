@@ -33,7 +33,17 @@ public class AgeCountryController {
         ArrayList<Country> rtnCountry = CountriesApplication.ourCountryList.countryList;
         rtnCountry.sort((c1, c2) -> ((int)(c1.getMedianAge() - c2.getMedianAge())));
 
+        return new ResponseEntity<>(rtnCountry.get(0), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(rtnCountry, HttpStatus.OK);
+    // /age/max
+    @GetMapping(value = "/max",
+            produces = {"application/json"})
+    public ResponseEntity<?> getCountryByMaxAge()
+    {
+        ArrayList<Country> rtnCountry = CountriesApplication.ourCountryList.countryList;
+        rtnCountry.sort((c2, c1) -> ((int)(c2.getMedianAge() - c1.getMedianAge())));
+
+        return new ResponseEntity<>(rtnCountry.get(rtnCountry.size()-1), HttpStatus.OK);
     }
 }

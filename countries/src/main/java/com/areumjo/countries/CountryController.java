@@ -44,24 +44,4 @@ public class CountryController
         return new ResponseEntity<>(rtnCountry, HttpStatus.OK);
     }
 
-    // /population/size/{people}
-    @GetMapping(value = "/population/size/{people}",
-                produces = {"application/json"})
-    public ResponseEntity<?> getCountryByPopulation(@PathVariable int people)
-    {
-        ArrayList<Country> rtnCountry = CountriesApplication.ourCountryList
-                .findCountries(e -> e.getPopulation() >= people);
-        return new ResponseEntity<>(rtnCountry, HttpStatus.OK);
-    }
-
-//    // /population/min
-//    @GetMapping(value = "/population/min",
-//                produces = {"application/json"})
-//    public ResponseEntity<?> getCountryByMinPopulation()
-//    {
-//        ArrayList<Country> rtnCountry = CountriesApplication.ourCountryList
-//                .findCountries(e -> e.getPopulation().math.min());
-//        return new ResponseEntity<>(rtnCountry, HttpStatus.OK);
-//    }
-
 }
